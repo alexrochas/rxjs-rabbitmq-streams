@@ -35,6 +35,8 @@ Have only one amqp subscriber producing and two rx subjects, one for incoming me
 
 ![twoProducers](./doc/twoProducers.png)
 
+Have one amqp subscriber by routing key. The output can be any of the above solutions.
+
 ### Pros
    - receive only what my app knows how to awnser
    - no message overload
