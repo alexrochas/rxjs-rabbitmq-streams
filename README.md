@@ -5,6 +5,43 @@ The curiosity/necessity of use rabbitmq without coupling my code with it took me
 
 So this is my try.
 
+## First approach
+
+![oneStream](./doc/oneStream.png)
+
+Have only one amqp subscriber producing to RxJS subjects and the rx-subscriber itself send messages to MQ.
+
+### Pros
+   - low complexity
+### Cons
+   - medium coupled
+   - possible message overload
+   
+## Second approach
+
+![twoStreams](./doc/twoStreams.png)
+
+Have only one amqp subscriber producing and two rx subjects, one for incoming messages and one for send messages to MQ.
+
+### Pros
+   - low complexity
+   - low coupled
+### Cons
+   - no semantic
+   - no intuitive
+   - output stream will have at most one subscriber with the responsability to send to MQ.
+
+## Third approach
+
+![twoProducers](./doc/twoProducers.png)
+
+### Pros
+   - receive only what my app knows how to awnser
+   - no message overload
+### Cons
+   - responsability duplicity
+   - medium coupled
+
 ## Roadmap
 
 * Add an image with the proposed flow to README.md
