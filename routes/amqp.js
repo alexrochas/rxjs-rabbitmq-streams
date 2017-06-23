@@ -1,9 +1,11 @@
 var express = require('express');
+var streams = require('../lib/rx/streams');
+var amqp = require('../lib/amqp/amqpInterface');
 var router = express.Router();
-var amqpInterface = require('../lib/amqp/amqpInterface');
 
 router.post('/', function(req, res, next) {
-  amqpInterface.publish(req.body.message);
+  amqp.publish(req.body);
+  streams.rabbitMQSubject.next(req.body);
   res.send('Done.');
 });
 
